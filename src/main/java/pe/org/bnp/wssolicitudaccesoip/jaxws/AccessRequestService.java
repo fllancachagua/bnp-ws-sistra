@@ -15,6 +15,6 @@ public interface AccessRequestService {
 
     @WebMethod(operationName="getListAccessRequestPI")
     @WebResult(name = "listAccessRequestPIResponse")            
-    PublicInformationAccessRequestResponse createAccessRequest( @WebParam(name="registrationPeriod")String period, @WebParam(name="id") String id);           
+    PublicInformationAccessRequestResponse createAccessRequest( @WebParam(name="registrationPeriod")String period, @WebParam(name="idAccessRequestPI") String id);           
     
 }
