@@ -4,7 +4,7 @@ import java.util.Date;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 @XmlRootElement
-@XmlType(name="abcde",propOrder = { "id", "documentNumber","requestDate","documentName","user","issue","originTypeCode","procedureCode","folios","remark","originOfficeName","sectorCode","entityCode","claimant","classification","documentTypeCode","destinationTypeCode","fileName"})
+@XmlType(propOrder = { "id", "documentNumber","requestDate","documentName","user","issue","remark","originTypeName","procedureName","folios","originOfficeName","destinationOfficeName","claimant","classification","documentTypeName","destinationTypeName","fileName","filePath","deadLine","state"})
 public class PublicInformationAccessRequest {
     private String id;
     private String documentNumber;
@@ -12,18 +12,20 @@ public class PublicInformationAccessRequest {
     private String documentName;    
     private String user;
     private String issue;
-    private Integer originTypeCode;
-    private Integer procedureCode;
+    private String originTypeName;
+    private String procedureName;
     private Integer folios;
     private String remark;
     private String originOfficeName;
-    private Integer sectorCode;
-    private Integer entityCode;
     private String claimant;
     private String classification;
-    private String documentTypeCode;
-    private String destinationTypeCode;
+    private String documentTypeName;
+    private String destinationTypeName;
     private String fileName;
+    private String filePath;
+    private String deadLine;
+    private String state;
+    private String destinationOfficeName;
 
     public String getId() {
         return id;
@@ -73,22 +75,6 @@ public class PublicInformationAccessRequest {
         this.issue = issue;
     }
 
-    public Integer getOriginTypeCode() {
-        return originTypeCode;
-    }
-
-    public void setOriginTypeCode(Integer originTypeCode) {
-        this.originTypeCode = originTypeCode;
-    }
-
-    public Integer getProcedureCode() {
-        return procedureCode;
-    }
-
-    public void setProcedureCode(Integer procedureCode) {
-        this.procedureCode = procedureCode;
-    }
-
     public Integer getFolios() {
         return folios;
     }
@@ -113,22 +99,6 @@ public class PublicInformationAccessRequest {
         this.originOfficeName = originOfficeName;
     }
 
-    public Integer getSectorCode() {
-        return sectorCode;
-    }
-
-    public void setSectorCode(Integer sectorCode) {
-        this.sectorCode = sectorCode;
-    }
-
-    public Integer getEntityCode() {
-        return entityCode;
-    }
-
-    public void setEntityCode(Integer entityCode) {
-        this.entityCode = entityCode;
-    }
-
     public String getClaimant() {
         return claimant;
     }
@@ -145,22 +115,6 @@ public class PublicInformationAccessRequest {
         this.classification = classification;
     }
 
-    public String getDocumentTypeCode() {
-        return documentTypeCode;
-    }
-
-    public void setDocumentTypeCode(String documentTypeCode) {
-        this.documentTypeCode = documentTypeCode;
-    }
-
-    public String getDestinationTypeCode() {
-        return destinationTypeCode;
-    }
-
-    public void setDestinationTypeCode(String destinationTypeCode) {
-        this.destinationTypeCode = destinationTypeCode;
-    }
-
     public String getFileName() {
         return fileName;
     }
@@ -168,5 +122,73 @@ public class PublicInformationAccessRequest {
     public void setFileName(String fileName) {
         this.fileName = fileName;
     }
-    
+
+    public String getOriginTypeName() {
+        return originTypeName;
+    }
+
+    public void setOriginTypeName(String originTypeName) {
+        this.originTypeName = originTypeName;
+    }
+
+    public String getProcedureName() {
+        return procedureName;
+    }
+
+    public void setProcedureName(String procedureName) {
+        this.procedureName = procedureName;
+    }
+
+    public String getDocumentTypeName() {
+        return documentTypeName;
+    }
+
+    public void setDocumentTypeName(String documentTypeName) {
+        this.documentTypeName = documentTypeName;
+    }
+
+    public String getDeadLine() {
+        return deadLine;
+    }
+
+    public void setDeadLine(String deadLine) {
+        this.deadLine = deadLine;
+    }
+
+    public String getFilePath() {
+        return filePath;
+    }
+
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
+    }
+
+    public String getDestinationTypeName() {
+        return destinationTypeName;
+    }
+
+    public void setDestinationTypeName(String destinationTypeName) {
+        this.destinationTypeName = destinationTypeName;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getDestinationOfficeName() {
+        return destinationOfficeName;
+    }
+
+    public void setDestinationOfficeName(String destinationOfficeName) {
+        this.destinationOfficeName = destinationOfficeName;
+    }
+
+    @Override
+    public String toString() {
+        return "PublicInformationAccessRequest{" + "id=" + id + ", documentNumber=" + documentNumber + ", requestDate=" + requestDate + ", documentName=" + documentName + ", user=" + user + ", issue=" + issue + ", originTypeName=" + originTypeName + ", procedureName=" + procedureName + ", folios=" + folios + ", remark=" + remark + ", originOfficeName=" + originOfficeName + ", claimant=" + claimant + ", classification=" + classification + ", documentTypeName=" + documentTypeName + ", destinationTypeName=" + destinationTypeName + ", fileName=" + fileName + ", filePath=" + filePath + ", deadLine=" + deadLine + ", state=" + state + ", destinationOfficeName=" + destinationOfficeName + '}';
+    }
 }
