@@ -14,16 +14,16 @@ import pe.org.bnp.wssolicitudaccesoip.ioc.ContainerIoC;
 @WebService(endpointInterface = "pe.org.bnp.wssolicitudaccesoip.ws.AccessRequestService")
 public class PublicInformationAccessRequestService implements AccessRequestService {
 
-    private ContainerIoC containerIoC;
-
-    @Override
-    public PublicInformationAccessRequestResponse createAccessRequest(PublicInformationAccessRequest publicInformationAccessRequest) {
-        //PublicInformationAccessRequest publicInformationAccessRequest = new PublicInformationAccessRequest();
-        PublicInformationAccessRequestResponse publicInformationAccessRequestResponse = new PublicInformationAccessRequestResponse();
-        publicInformationAccessRequestResponse.setId("1000");
-        publicInformationAccessRequestResponse.setMessage("Registrado con exito");
-        return publicInformationAccessRequestResponse;
-    }
+//    private ContainerIoC containerIoC;
+//
+//    @Override
+//    public PublicInformationAccessRequestResponse createAccessRequest(PublicInformationAccessRequest publicInformationAccessRequest) {
+//        //PublicInformationAccessRequest publicInformationAccessRequest = new PublicInformationAccessRequest();
+//        PublicInformationAccessRequestResponse publicInformationAccessRequestResponse = new PublicInformationAccessRequestResponse();
+//        publicInformationAccessRequestResponse.setId("1000");
+//        publicInformationAccessRequestResponse.setMessage("Registrado con exito");
+//        return publicInformationAccessRequestResponse;
+//    }
 
     @Override
     public PublicInformationAccessRequestListResponse getListAccessRequestPublicInformation(PublicInformationAccessRequestFilterInput publicInformationAccessRequestFilterInput) {
@@ -36,8 +36,8 @@ public class PublicInformationAccessRequestService implements AccessRequestServi
     }
 
     @Override
-    public String helloWorld() {
-        return "Hello cruel world";
+    public String example() {
+        return "Hello world";
     }
 
 }

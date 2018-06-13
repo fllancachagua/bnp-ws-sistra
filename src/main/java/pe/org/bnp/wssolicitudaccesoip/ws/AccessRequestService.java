@@ -11,16 +11,16 @@ import pe.org.bnp.wssolicitudaccesoip.dto.PublicInformationAccessRequestResponse
 
 @WebService
 public interface AccessRequestService {
-    @WebMethod(operationName="createAccessRequestPI")
-    @WebResult(name = "accessRequestPIResponse")            
-    PublicInformationAccessRequestResponse createAccessRequest( @WebParam(name="accessRequestPI")PublicInformationAccessRequest publicInformationAccessRequest);           
-
+//    @WebMethod(operationName="createAccessRequestPI")
+//    @WebResult(name = "accessRequestPIResponse")            
+//    PublicInformationAccessRequestResponse createAccessRequest( @WebParam(name="accessRequestPI")PublicInformationAccessRequest publicInformationAccessRequest);           
+//
     @WebMethod(operationName="getListAccessRequestPI")
     @WebResult(name = "listAccessRequestPIResponse")            
     PublicInformationAccessRequestListResponse getListAccessRequestPublicInformation( @WebParam(name="accessRequestFilterInput") PublicInformationAccessRequestFilterInput publicInformationAccessRequestFilterInput);           
 
-    @WebMethod(operationName="helloWorld")
+    @WebMethod(operationName="example")
     @WebResult(name = "resultado")            
-    String helloWorld();           
+    String example();           
     
 }
