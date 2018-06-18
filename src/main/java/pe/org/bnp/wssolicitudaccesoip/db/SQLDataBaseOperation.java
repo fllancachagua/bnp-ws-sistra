@@ -1,5 +1,6 @@
 package pe.org.bnp.wssolicitudaccesoip.db;
 
+import com.microsoft.sqlserver.jdbc.SQLServerCallableStatement;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -60,6 +61,18 @@ public abstract class SQLDataBaseOperation {
             LOGGER.error(exception.getMessage(), exception);
         }
     }
+    
+    public static void closeSQLServerCallableStatement(SQLServerCallableStatement sqlServerCallableStatement) {
+        try {
+            if (sqlServerCallableStatement != null) {
+                sqlServerCallableStatement.close();
+            }
+        } catch (SQLException exception) {
+            LOGGER.error(exception.getMessage(), exception);
+        } catch (Exception exception) {
+            LOGGER.error(exception.getMessage(), exception);
+        }
+    }    
 
     public static Connection getConnectionJNDI() {
         Connection connection = null;

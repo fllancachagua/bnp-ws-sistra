@@ -14,7 +14,7 @@ public class PublicInformationAccessRequest {
     private String issue;
     private String originTypeName;
     private String procedureName;
-    private Integer folios;
+    private String folios;
     private String remark;
     private String originOfficeName;
     private String claimant;
@@ -75,11 +75,11 @@ public class PublicInformationAccessRequest {
         this.issue = issue;
     }
 
-    public Integer getFolios() {
+    public String getFolios() {
         return folios;
     }
 
-    public void setFolios(Integer folios) {
+    public void setFolios(String folios) {
         this.folios = folios;
     }
 

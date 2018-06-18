@@ -1,5 +1,6 @@
 package pe.org.bnp.wssolicitudaccesoip.dao;
 
+import com.microsoft.sqlserver.jdbc.SQLServerCallableStatement;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -10,7 +11,9 @@ import org.slf4j.LoggerFactory;
 import pe.org.bnp.wssolicitudaccesoip.db.SQLDataBaseOperation;
 import pe.org.bnp.wssolicitudaccesoip.dto.PublicInformationAccessRequest;
 import pe.org.bnp.wssolicitudaccesoip.dto.PublicInformationAccessRequestFilterInput;
+import pe.org.bnp.wssolicitudaccesoip.dto.PublicInformationAccessRequestInput;
 import pe.org.bnp.wssolicitudaccesoip.dto.PublicInformationAccessRequestListResponse;
+import pe.org.bnp.wssolicitudaccesoip.dto.PublicInformationAccessRequestResponse;
 
 public class PublicInformationAccestRequestDAO implements AccessRequestDAO {
 
@@ -21,25 +24,22 @@ public class PublicInformationAccestRequestDAO implements AccessRequestDAO {
         Connection connection = null;
         CallableStatement callableStatement = null;
         ResultSet resultSet = null;
-        String cursorListAccessRequestPI = "{call dbo.PA_sel_TransparenciaCargarListadoDocumentosRegistrados(?,?,?,?)}";
+        String cursorStoreProcedure = "{call dbo.PA_sel_TransparenciaCargarListadoDocumentosRegistrados(?,?,?)}";
 
         PublicInformationAccessRequestListResponse publicInformationAccessRequestListResponse = new PublicInformationAccessRequestListResponse();
 
         List<PublicInformationAccessRequest> listPublicInformationAccessRequest = new ArrayList<PublicInformationAccessRequest>();
         try {
-            //connection = SQLDataBaseOperation.getConnectionJDBC();
             connection = SQLDataBaseOperation.getConnectionJNDI();
-            LOGGER.info("connection instance generated");
+            LOGGER.info("listAccessRequest: connection instance generated");
 
-            callableStatement = connection.prepareCall(cursorListAccessRequestPI);
+            callableStatement = connection.prepareCall(cursorStoreProcedure);
             callableStatement.setString(1, publicInformationAccessRequestFilterInput.getStartPeriod());
             callableStatement.setString(2, publicInformationAccessRequestFilterInput.getEndPeriod());
             callableStatement.setString(3, publicInformationAccessRequestFilterInput.getSistraId());
-//            callableStatement.setString(1, "01/01/2018");
-//            callableStatement.setString(2, "01/07/2018");
-//            callableStatement.setString(3, "");
-            callableStatement.registerOutParameter(4, java.sql.Types.VARCHAR);
+            //callableStatement.registerOutParameter(4, java.sql.Types.VARCHAR);
             resultSet = callableStatement.executeQuery();
+            LOGGER.info("dbo.PA_sel_TransparenciaCargarListadoDocumentosRegistrados executed");
             while (resultSet.next()) {
                 PublicInformationAccessRequest publicInformationAccessRequest = new PublicInformationAccessRequest();
                 publicInformationAccessRequest.setDocumentNumber(resultSet.getString(1));
@@ -48,7 +48,7 @@ public class PublicInformationAccestRequestDAO implements AccessRequestDAO {
                 publicInformationAccessRequest.setUser(resultSet.getString(4));
                 publicInformationAccessRequest.setOriginTypeName(resultSet.getString(5));
                 publicInformationAccessRequest.setProcedureName(resultSet.getString(6));
-                publicInformationAccessRequest.setFolios(resultSet.getInt(7));
+                publicInformationAccessRequest.setFolios(resultSet.getString(7));
                 publicInformationAccessRequest.setRemark(resultSet.getString(8));
                 publicInformationAccessRequest.setIssue(resultSet.getString(9));
                 publicInformationAccessRequest.setClassification(resultSet.getString(10));
@@ -65,35 +65,6 @@ public class PublicInformationAccestRequestDAO implements AccessRequestDAO {
                 listPublicInformationAccessRequest.add(publicInformationAccessRequest);
             }
             publicInformationAccessRequestListResponse.setListPublicInformationAccessRequest(listPublicInformationAccessRequest);
-
-//            PublicInformationAccessRequest publicInformationAccessRequest = new PublicInformationAccessRequest();
-//            publicInformationAccessRequest.setClaimant("Javier Quispe");
-//            publicInformationAccessRequest.setDestinationTypeCode("TRAMITE");
-//            publicInformationAccessRequest.setDocumentName("SRP000");
-//            publicInformationAccessRequest.setFileName("documento0001.pdf");
-//            publicInformationAccessRequest.setId("00001");
-//            publicInformationAccessRequest.setSectorCode(2);
-//            publicInformationAccessRequest.setIssue("Solicito el plan organizacional del 2016: rpta de SP (JNDI): " + answer);
-//
-//            PublicInformationAccessRequest publicInformationAccessRequest2 = new PublicInformationAccessRequest();
-//            publicInformationAccessRequest2.setClaimant("DAnilo");
-//            publicInformationAccessRequest2.setDestinationTypeCode("TRAMITE");
-//            publicInformationAccessRequest2.setDocumentName("SRP000");
-//            publicInformationAccessRequest2.setFileName("documento0002.pdf");
-//            publicInformationAccessRequest2.setId("00002");
-//            publicInformationAccessRequest2.setSectorCode(3);
-//            publicInformationAccessRequest2.setIssue("Solicito el plan organizacional del 2017");
-//
-//            PublicInformationAccessRequest publicInformationAccessRequest3 = new PublicInformationAccessRequest();
-//            publicInformationAccessRequest3.setClaimant("Manuel");
-//            publicInformationAccessRequest3.setDestinationTypeCode("TRAMITE");
-//            publicInformationAccessRequest3.setDocumentName("SRP000");
-//            publicInformationAccessRequest3.setFileName("documento0003.pdf");
-//            publicInformationAccessRequest3.setId("00003");
-//            publicInformationAccessRequest3.setSectorCode(3);
-//            publicInformationAccessRequest3.setIssue("Solicito el plan organizacional del 2018");
-//            listPublicInformationAccessRequest.add(publicInformationAccessRequest2);
-//            listPublicInformationAccessRequest.add(publicInformationAccessRequest3);
         } catch (Exception exception) {
             exception.printStackTrace();
         } finally {
@@ -102,6 +73,55 @@ public class PublicInformationAccestRequestDAO implements AccessRequestDAO {
             SQLDataBaseOperation.closeConnection(connection);
         }
         return publicInformationAccessRequestListResponse;
+    }
+
+    @Override
+    public PublicInformationAccessRequestResponse createAccessRequest(PublicInformationAccessRequestInput publicInformationAccessRequestInput) {
+        Connection connection = null;
+        CallableStatement callableStatement = null;
+        SQLServerCallableStatement sqlServerCallableStatement = null;
+        String cursorStoreProcedure = "{call dbo.PA_ins_TransparenciaGuardarNuevoDocumentoExterno(?,?,?,?,?,?,?,?)}";
+        PublicInformationAccessRequestResponse publicInformationAccessRequestResponse = new PublicInformationAccessRequestResponse();
+
+        try {
+            connection = SQLDataBaseOperation.getConnectionJNDI();
+            LOGGER.info("PA_ins_TransparenciaGuardarNuevoDocumentoExterno: connection instance generated");
+
+            callableStatement = connection.prepareCall(cursorStoreProcedure);
+            callableStatement.setString(1, publicInformationAccessRequestInput.getDocumentNumber());
+            callableStatement.setString(2, publicInformationAccessRequestInput.getIssue());
+            callableStatement.setString(3, publicInformationAccessRequestInput.getDocumentName());
+            callableStatement.setString(4, publicInformationAccessRequestInput.getRemark());
+            callableStatement.setString(5, publicInformationAccessRequestInput.getClaimant());
+            callableStatement.setString(6, publicInformationAccessRequestInput.getFileName());
+            callableStatement.registerOutParameter(7, java.sql.Types.VARCHAR);
+            callableStatement.registerOutParameter(8, java.sql.Types.VARCHAR);
+//            sqlServerCallableStatement = (SQLServerCallableStatement) callableStatement;
+//            LOGGER.info("dbo.PA_ins_TransparenciaGuardarNuevoDocumentoExterno - Response buffering mode is: " + sqlServerCallableStatement.getResponseBuffering());
+//            sqlServerCallableStatement.execute();
+//            LOGGER.info("dbo.PA_ins_TransparenciaGuardarNuevoDocumentoExterno executed");
+//            publicInformationAccessRequestResponse.setMessage(callableStatement.getString(7));
+//            LOGGER.info("dbo.PA_ins_TransparenciaGuardarNuevoDocumentoExterno - msj: " + publicInformationAccessRequestResponse.getMessage());
+//            publicInformationAccessRequestResponse.setId(callableStatement.getString(8));
+//            LOGGER.info("dbo.PA_ins_TransparenciaGuardarNuevoDocumentoExterno - msj: " + publicInformationAccessRequestResponse.getId());
+//            connection.commit();
+//            LOGGER.info("dbo.PA_ins_TransparenciaGuardarNuevoDocumentoExterno - transaction commited");
+            callableStatement.execute();
+            LOGGER.info("dbo.PA_ins_TransparenciaGuardarNuevoDocumentoExterno executed");
+            publicInformationAccessRequestResponse.setMessage(callableStatement.getString(7));
+            LOGGER.info("dbo.PA_ins_TransparenciaGuardarNuevoDocumentoExterno - msj: " + publicInformationAccessRequestResponse.getMessage());
+            publicInformationAccessRequestResponse.setId(callableStatement.getString(8));
+            LOGGER.info("dbo.PA_ins_TransparenciaGuardarNuevoDocumentoExterno - msj: " + publicInformationAccessRequestResponse.getId());
+            connection.commit();
+            return publicInformationAccessRequestResponse;
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        } finally {
+            SQLDataBaseOperation.closeSQLServerCallableStatement(sqlServerCallableStatement);
+            SQLDataBaseOperation.closeCallableStatement(callableStatement);
+            SQLDataBaseOperation.closeConnection(connection);
+        }
+        return publicInformationAccessRequestResponse;
     }
 
 }

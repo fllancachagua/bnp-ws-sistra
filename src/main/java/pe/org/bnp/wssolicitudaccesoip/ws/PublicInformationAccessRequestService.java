@@ -1,15 +1,11 @@
 package pe.org.bnp.wssolicitudaccesoip.ws;
 
-import java.util.ArrayList;
-import java.util.List;
 import javax.jws.WebService;
-import pe.org.bnp.wssolicitudaccesoip.business.AccessRequestBusiness;
 import pe.org.bnp.wssolicitudaccesoip.business.PublicInformationAccessRequestBusiness;
-import pe.org.bnp.wssolicitudaccesoip.dto.PublicInformationAccessRequest;
 import pe.org.bnp.wssolicitudaccesoip.dto.PublicInformationAccessRequestFilterInput;
+import pe.org.bnp.wssolicitudaccesoip.dto.PublicInformationAccessRequestInput;
 import pe.org.bnp.wssolicitudaccesoip.dto.PublicInformationAccessRequestListResponse;
 import pe.org.bnp.wssolicitudaccesoip.dto.PublicInformationAccessRequestResponse;
-import pe.org.bnp.wssolicitudaccesoip.ioc.ContainerIoC;
 
 @WebService(endpointInterface = "pe.org.bnp.wssolicitudaccesoip.ws.AccessRequestService")
 public class PublicInformationAccessRequestService implements AccessRequestService {
@@ -24,6 +20,11 @@ public class PublicInformationAccessRequestService implements AccessRequestServi
 //        publicInformationAccessRequestResponse.setMessage("Registrado con exito");
 //        return publicInformationAccessRequestResponse;
 //    }
+    @Override
+    public PublicInformationAccessRequestResponse createAccessRequest(PublicInformationAccessRequestInput publicInformationAccessRequestInput) {
+        PublicInformationAccessRequestBusiness publicInformationAccessRequestBusiness = new PublicInformationAccessRequestBusiness();
+        return publicInformationAccessRequestBusiness.createAccessRequest(publicInformationAccessRequestInput);
+    }
 
     @Override
     public PublicInformationAccessRequestListResponse getListAccessRequestPublicInformation(PublicInformationAccessRequestFilterInput publicInformationAccessRequestFilterInput) {
@@ -39,5 +40,6 @@ public class PublicInformationAccessRequestService implements AccessRequestServi
     public String example() {
         return "Hello world";
     }
+
 
 }

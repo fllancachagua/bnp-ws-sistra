@@ -2,12 +2,11 @@ package pe.org.bnp.wssolicitudaccesoip.business;
 
 import pe.org.bnp.wssolicitudaccesoip.dao.PublicInformationAccestRequestDAO;
 import pe.org.bnp.wssolicitudaccesoip.dto.PublicInformationAccessRequestFilterInput;
+import pe.org.bnp.wssolicitudaccesoip.dto.PublicInformationAccessRequestInput;
 import pe.org.bnp.wssolicitudaccesoip.dto.PublicInformationAccessRequestListResponse;
-import pe.org.bnp.wssolicitudaccesoip.ioc.ContainerIoC;
+import pe.org.bnp.wssolicitudaccesoip.dto.PublicInformationAccessRequestResponse;
 
 public class PublicInformationAccessRequestBusiness implements AccessRequestBusiness {
-
-    private ContainerIoC containerIoC;
 
     @Override
     public PublicInformationAccessRequestListResponse listAccessRequest(PublicInformationAccessRequestFilterInput publicInformationAccessRequestFilterInput) {
@@ -19,6 +18,12 @@ public class PublicInformationAccessRequestBusiness implements AccessRequestBusi
 
         return publicInformationAccessRequestListResponse;
 
+    }
+
+    @Override
+    public PublicInformationAccessRequestResponse createAccessRequest(PublicInformationAccessRequestInput publicInformationAccessRequestInput) {
+        PublicInformationAccestRequestDAO publicInformationAccessRequestDAO = new PublicInformationAccestRequestDAO();
+        return publicInformationAccessRequestDAO.createAccessRequest(publicInformationAccessRequestInput);
     }
 
 }

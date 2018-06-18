@@ -1,16 +1,94 @@
-09:56:01,692 [main      ] INFO  (jaxws.AccessRequestServicePublisher) Servicio desplegado - [linea:16]
-10:10:42,015 [main      ] INFO  (jaxws.AccessRequestServicePublisher) Servicio desplegado - [linea:16]
-10:12:57,841 [main      ] INFO  (jaxws.AccessRequestServicePublisher) Servicio desplegado - [linea:16]
-10:15:33,009 [main      ] INFO  (ws.AccessRequestServicePublisher) Servicio desplegado - [linea:16]
-10:21:52,070 [main      ] INFO  (ws.AccessRequestServicePublisher) Servicio desplegado - [linea:16]
-10:33:07,952 [main      ] INFO  (ws.AccessRequestServicePublisher) Servicio desplegado - [linea:16]
-10:43:41,163 [main      ] INFO  (ws.AccessRequestServicePublisher) Servicio desplegado - [linea:16]
-10:44:00,776 [main      ] INFO  (ws.AccessRequestServiceClient) Resultado: Hello cruel world - [linea:41]
-10:49:52,399 [main      ] INFO  (ws.AccessRequestServicePublisher) Servicio desplegado - [linea:16]
-10:50:28,425 [main      ] INFO  (ws.AccessRequestServiceClient) Resultado: pe.org.bnp.wssolicitudaccesoip.dto.PublicInformationAccessRequest@484970b0 - [linea:38]
-10:50:30,503 [main      ] INFO  (ws.AccessRequestServiceClient) Resultado: pe.org.bnp.wssolicitudaccesoip.dto.PublicInformationAccessRequest@60015ef5 - [linea:38]
-10:50:44,093 [main      ] INFO  (ws.AccessRequestServiceClient) Resultado: pe.org.bnp.wssolicitudaccesoip.dto.PublicInformationAccessRequest@2f54a33d - [linea:38]
-11:09:15,606 [main      ] INFO  (ws.AccessRequestServicePublisher) Servicio desplegado - [linea:16]
-11:09:21,709 [main      ] INFO  (ws.AccessRequestServiceClient) PublicInformationAccessRequest{id=00001, documentNumber=null, requestDate=null, documentName=SRP000, user=null, issue=Solicito el plan organizacional del 2016, originTypeCode=null, procedureCode=null, folios=null, remark=null, originOfficeName=null, sectorCode=2, entityCode=null, claimant=Javier Quispe, classification=null, documentTypeCode=null, destinationTypeCode=TRAMITE, fileName=documento0001.pdf} - [linea:38]
-11:09:21,710 [main      ] INFO  (ws.AccessRequestServiceClient) PublicInformationAccessRequest{id=00003, documentNumber=null, requestDate=null, documentName=SRP000, user=null, issue=Solicito el plan organizacional del 2018, originTypeCode=null, procedureCode=null, folios=null, remark=null, originOfficeName=null, sectorCode=3, entityCode=null, claimant=Manuel, classification=null, documentTypeCode=null, destinationTypeCode=TRAMITE, fileName=documento0003.pdf} - [linea:38]
-11:09:21,711 [main      ] INFO  (ws.AccessRequestServiceClient) PublicInformationAccessRequest{id=null, documentNumber=null, requestDate=null, documentName=null, user=null, issue=null, originTypeCode=null, procedureCode=null, folios=null, remark=null, originOfficeName=null, sectorCode=null, entityCode=null, claimant=null, classification=null, documentTypeCode=null, destinationTypeCode=null, fileName=null} - [linea:38]
+12:25:31,730 [main      ] INFO  (ws.AccessRequestServicePublisher) Servicio desplegado - [linea:16]
+12:52:47,236 [main      ] INFO  (ws.AccessRequestServicePublisher) Servicio desplegado - [linea:16]
+14:36:43,047 [pool-1-thread-6] ERROR (sql.Connection) Need to specify class name in environment or system property, or as an applet parameter, or in an application resource file:  java.naming.factory.initial - [linea:56]
+javax.naming.NoInitialContextException: Need to specify class name in environment or system property, or as an applet parameter, or in an application resource file:  java.naming.factory.initial
+	at javax.naming.spi.NamingManager.getInitialContext(NamingManager.java:662)
+	at javax.naming.InitialContext.getDefaultInitCtx(InitialContext.java:313)
+	at javax.naming.InitialContext.getURLOrDefaultInitCtx(InitialContext.java:350)
+	at javax.naming.InitialContext.lookup(InitialContext.java:417)
+	at pe.org.bnp.wssolicitudaccesoip.db.SQLConnection.getDataSource(SQLConnection.java:52)
+	at pe.org.bnp.wssolicitudaccesoip.db.SQLConnection.getConnectionJNDI(SQLConnection.java:42)
+	at pe.org.bnp.wssolicitudaccesoip.db.SQLDataBaseOperation.getConnectionJNDI(SQLDataBaseOperation.java:67)
+	at pe.org.bnp.wssolicitudaccesoip.dao.PublicInformationAccestRequestDAO.createAccessRequest(PublicInformationAccestRequestDAO.java:87)
+	at pe.org.bnp.wssolicitudaccesoip.business.PublicInformationAccessRequestBusiness.createAccessRequest(PublicInformationAccessRequestBusiness.java:26)
+	at pe.org.bnp.wssolicitudaccesoip.ws.PublicInformationAccessRequestService.createAccessRequest(PublicInformationAccessRequestService.java:26)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at sun.reflect.misc.Trampoline.invoke(MethodUtil.java:71)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at sun.reflect.misc.MethodUtil.invoke(MethodUtil.java:275)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at com.sun.xml.internal.ws.api.server.MethodUtil.invoke(MethodUtil.java:68)
+	at com.sun.xml.internal.ws.api.server.InstanceResolver$1.invoke(InstanceResolver.java:235)
+	at com.sun.xml.internal.ws.server.InvokerTube$2.invoke(InvokerTube.java:134)
+	at com.sun.xml.internal.ws.server.sei.SEIInvokerTube.processRequest(SEIInvokerTube.java:73)
+	at com.sun.xml.internal.ws.api.pipe.Fiber.__doRun(Fiber.java:1121)
+	at com.sun.xml.internal.ws.api.pipe.Fiber._doRun(Fiber.java:1035)
+	at com.sun.xml.internal.ws.api.pipe.Fiber.doRun(Fiber.java:1004)
+	at com.sun.xml.internal.ws.api.pipe.Fiber.runSync(Fiber.java:862)
+	at com.sun.xml.internal.ws.server.WSEndpointImpl$2.process(WSEndpointImpl.java:404)
+	at com.sun.xml.internal.ws.transport.http.HttpAdapter$HttpToolkit.handle(HttpAdapter.java:706)
+	at com.sun.xml.internal.ws.transport.http.HttpAdapter.handle(HttpAdapter.java:260)
+	at com.sun.xml.internal.ws.transport.http.server.WSHttpHandler.handleExchange(WSHttpHandler.java:98)
+	at com.sun.xml.internal.ws.transport.http.server.WSHttpHandler.handle(WSHttpHandler.java:82)
+	at com.sun.net.httpserver.Filter$Chain.doFilter(Filter.java:79)
+	at sun.net.httpserver.AuthFilter.doFilter(AuthFilter.java:83)
+	at com.sun.net.httpserver.Filter$Chain.doFilter(Filter.java:82)
+	at sun.net.httpserver.ServerImpl$Exchange$LinkHandler.handle(ServerImpl.java:675)
+	at com.sun.net.httpserver.Filter$Chain.doFilter(Filter.java:79)
+	at sun.net.httpserver.ServerImpl$Exchange.run(ServerImpl.java:647)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+14:36:43,071 [pool-1-thread-6] ERROR (db.SQLDataBaseOperation)  - [linea:71]
+java.lang.NullPointerException
+	at pe.org.bnp.wssolicitudaccesoip.db.SQLConnection.getConnectionJNDI(SQLConnection.java:42)
+	at pe.org.bnp.wssolicitudaccesoip.db.SQLDataBaseOperation.getConnectionJNDI(SQLDataBaseOperation.java:67)
+	at pe.org.bnp.wssolicitudaccesoip.dao.PublicInformationAccestRequestDAO.createAccessRequest(PublicInformationAccestRequestDAO.java:87)
+	at pe.org.bnp.wssolicitudaccesoip.business.PublicInformationAccessRequestBusiness.createAccessRequest(PublicInformationAccessRequestBusiness.java:26)
+	at pe.org.bnp.wssolicitudaccesoip.ws.PublicInformationAccessRequestService.createAccessRequest(PublicInformationAccessRequestService.java:26)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at sun.reflect.misc.Trampoline.invoke(MethodUtil.java:71)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at sun.reflect.misc.MethodUtil.invoke(MethodUtil.java:275)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at com.sun.xml.internal.ws.api.server.MethodUtil.invoke(MethodUtil.java:68)
+	at com.sun.xml.internal.ws.api.server.InstanceResolver$1.invoke(InstanceResolver.java:235)
+	at com.sun.xml.internal.ws.server.InvokerTube$2.invoke(InvokerTube.java:134)
+	at com.sun.xml.internal.ws.server.sei.SEIInvokerTube.processRequest(SEIInvokerTube.java:73)
+	at com.sun.xml.internal.ws.api.pipe.Fiber.__doRun(Fiber.java:1121)
+	at com.sun.xml.internal.ws.api.pipe.Fiber._doRun(Fiber.java:1035)
+	at com.sun.xml.internal.ws.api.pipe.Fiber.doRun(Fiber.java:1004)
+	at com.sun.xml.internal.ws.api.pipe.Fiber.runSync(Fiber.java:862)
+	at com.sun.xml.internal.ws.server.WSEndpointImpl$2.process(WSEndpointImpl.java:404)
+	at com.sun.xml.internal.ws.transport.http.HttpAdapter$HttpToolkit.handle(HttpAdapter.java:706)
+	at com.sun.xml.internal.ws.transport.http.HttpAdapter.handle(HttpAdapter.java:260)
+	at com.sun.xml.internal.ws.transport.http.server.WSHttpHandler.handleExchange(WSHttpHandler.java:98)
+	at com.sun.xml.internal.ws.transport.http.server.WSHttpHandler.handle(WSHttpHandler.java:82)
+	at com.sun.net.httpserver.Filter$Chain.doFilter(Filter.java:79)
+	at sun.net.httpserver.AuthFilter.doFilter(AuthFilter.java:83)
+	at com.sun.net.httpserver.Filter$Chain.doFilter(Filter.java:82)
+	at sun.net.httpserver.ServerImpl$Exchange$LinkHandler.handle(ServerImpl.java:675)
+	at com.sun.net.httpserver.Filter$Chain.doFilter(Filter.java:79)
+	at sun.net.httpserver.ServerImpl$Exchange.run(ServerImpl.java:647)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+14:36:43,073 [pool-1-thread-6] INFO  (dto.PublicInformationAccessRequestListResponse) createAccessRequest: connection instance generated - [linea:88]
